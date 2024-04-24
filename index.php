@@ -44,19 +44,19 @@ if (isset($_POST['login']) ) {
             }
         } else {
         
-            $_SESSION['error'] =  "Email or Password is incorrect!" ;
+            $errors['errorLogin'] =  "Email or Password is incorrect!" ;
 
         }
         // print_r($emailC);
         // print_r($passwordC);
     } else {
-        $errors['all-input'] =   "All input field are required!";
+        $errors['all'] =   "All input field are required!";
     }
 }
 // ----------------------------------register-----------------------------------
 
 
-if (isset($_POST['register']) &&  $_SERVER['REQUEST_METHOD']==='post') {
+if (isset($_POST['register']) ) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $country = $_POST['country'];
@@ -168,9 +168,9 @@ if (empty($_SESSION['id'])) {
                             <input type="password" name="password" class="form-control p_input" placeholder="Password">
                         </div>
                         <div class="text-center">
-                            <small><?= (isset($_SESSION['error'])) ? $_SESSION['error'] : null; ?></small>
+                            <small><?= (isset($errors['errorLogin'])) ? $errors['errorLogin'] : null; ?></small>
 
-                            <small><?= (isset($errors['all-input'])) ? $errors['all-input'] : null; ?></small>
+                            <small><?= (isset($errors['all'])) ? $errors['all'] : null; ?></small>
                             </br>
                             <button type="submit" name="login" class="btn btn-primary btn-block enter-btn">Login</button>
                         </div>
@@ -281,10 +281,10 @@ if (empty($_SESSION['id'])) {
 
     </html>
 <?php
-if(empty($_SESSION['error'])){
-    echo "hello";
-unset($_SESSION['error']);
-}
+// if(empty($_SESSION['error'])){
+//     echo "hello";
+// unset($_SESSION['error']);
+// }
 } else {
     header("location: chat.php");
 }
